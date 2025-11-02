@@ -19,8 +19,7 @@
     }
 
     .app-container {
-      max-width: 380px;
-      width: 90vw;
+      width: 380px;
       background-color: #1e73be;
       border-radius: 5px;
       overflow: hidden;
@@ -84,11 +83,11 @@
       color: #fff;
       box-shadow: 0 3px 6px rgba(0,0,0,0.15);
     }
-
+    
     .header .name-icon {
-      width: 20px;
+      width: 20px; 
       height: 20px;
-      margin-left: 5px;
+      margin-left: 5px; 
       vertical-align: middle;
       filter: invert(1);
     }
@@ -125,26 +124,24 @@
       font-size: 1rem;
     }
 
+  
     .gyro-section {
+  
       transition: transform 0.15s ease-out;
     }
 
+    
     .timer-section {
-      background-color: #9cd99c;
+      background-color: #42BA63;
       position: relative;
       overflow: hidden;
       height: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #004d00;
+      color: #000000;
       font-size: 2rem;
       font-weight: bold;
-    }
-
-    #timer {
-      opacity: 1;
-      transition: opacity 0.6s ease-in-out;
     }
 
     .bubble-mask {
@@ -191,7 +188,8 @@
 
     .footer a {
       display: inline-block;
-      color: #008000;
+      /* ✅ تغییر رنگ از آبی (#1a73e8) به سبز تیره (#008000) */
+      color: #008000; 
       font-weight: 600;
       text-decoration: none;
       margin-bottom: 15px;
@@ -209,7 +207,7 @@
       <div class="header">
         <div class="name">
           <img src="https://img.icons8.com/?size=100&id=TTEIPFygMuEZ&format=png&color=000000" alt="New Icon" class="name-icon">
-          hajir javadian
+             Hanieh Rezaee
         </div>
         <div class="price">£104.60</div>
       </div>
@@ -226,7 +224,7 @@
           <span class="line1">East Scotland 28</span>
           <span class="line2">Day MegaRider</span>
         </h3>
-        <p>Valid from: 00:00, 3 Oct 2025</p>
+        <p>Valid from: 00:00, 9 Oct 2025</p>
       </div>
 
       <div class="gyro-section" id="gyro-section">
@@ -245,164 +243,170 @@
       <div class="code">9672-20251003101631920-vSHn7</div>
 
       <div class="footer">
-        <a href="#">More details</a>
+        <a href="#">More details ></a>
       </div>
     </div>
   </div>
 
-  <script>
-    const timerElement = document.getElementById("timer");
-    const bubbleMask = document.getElementById("bubble-mask");
-    const gyroSection = document.getElementById("gyro-section");
+ <script>
+  const timerElement = document.getElementById("timer");
+  const bubbleMask = document.getElementById("bubble-mask");
+  const gyroSection = document.getElementById("gyro-section");
 
-    let showClock = true;
-    function toggleDisplay() {
-      timerElement.style.opacity = 0;
-      setTimeout(() => {
-        if (showClock) {
-          const now = new Date();
-          timerElement.textContent = now.toLocaleTimeString('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit'
-          });
-        } else {
-          timerElement.textContent = "VIDEO";
-        }
-        timerElement.style.opacity = 1;
-        showClock = !showClock;
-      }, 400);
-    }
-    setInterval(toggleDisplay, 1500);
-    toggleDisplay();
-
-    function createBubble() {
-      const bubble = document.createElement("div");
-      const size = Math.random() * 25 + 10;
-      bubble.classList.add("bubble");
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
-      bubbleMask.appendChild(bubble);
-      setTimeout(() => bubble.remove(), 7000);
-    }
-    setInterval(createBubble, 800);
-
-    const expireTime = new Date();
-    expireTime.setDate(expireTime.getDate() + 3);
-    expireTime.setHours(expireTime.getHours() + 8);
-    expireTime.setMinutes(expireTime.getMinutes() + 19);
-    expireTime.setSeconds(expireTime.getSeconds() + 9);
-
-    function updateCountdown() {
+  let showClock = true;
+  function toggleDisplay() {
+    if (showClock) {
       const now = new Date();
-      const diff = expireTime - now;
-      const countdown = document.getElementById("countdown");
-      if (diff <= 0) {
-        countdown.textContent = "Expired";
-        return;
-      }
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
-      countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
+      timerElement.textContent = now.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    } else {
+      timerElement.textContent = "Mercy";
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    showClock = !showClock;
+  }
+  setInterval(toggleDisplay, 1500);
+  toggleDisplay();
 
-    function handleOrientation(event) {
-      const gamma = event.gamma || 0;
-      const rotationAmount = Math.max(-20, Math.min(20, gamma));
-      gyroSection.style.transform = `rotateZ(${rotationAmount}deg)`;
+  
+  function createBubble() {
+    const bubble = document.createElement("div");
+    const size = Math.random() * 25 + 10;
+    bubble.classList.add("bubble");
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${Math.random() * 100}%`;
+    bubble.style.animationDuration = `${Math.random() * 4 + 3}s`;
+    bubbleMask.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 7000);
+  }
+  setInterval(createBubble, 800);
+
+  
+  const expireTime = new Date();
+  expireTime.setDate(expireTime.getDate() + 6);
+  expireTime.setHours(expireTime.getHours() + 8);
+  expireTime.setMinutes(expireTime.getMinutes() + 19);
+  expireTime.setSeconds(expireTime.getSeconds() + 9);
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = expireTime - now;
+    const countdown = document.getElementById("countdown");
+    if (diff <= 0) {
+      countdown.textContent = "Expired";
+      return;
     }
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    countdown.textContent = `${d}d ${h}h ${m}m ${s}s`;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
 
-    async function initOrientation() {
-      try {
-        if (typeof DeviceOrientationEvent.requestPermission === "function") {
-          const response = await DeviceOrientationEvent.requestPermission();
-          if (response === "granted") {
-            window.addEventListener("deviceorientation", handleOrientation);
-          } else {
-            showPermissionButton();
-          }
-        } else {
+  
+  function handleOrientation(event) {
+   
+    const gamma = event.gamma || 0; 
+    
+   
+    const rotationAmount = Math.max(-20, Math.min(20, gamma)); 
+    
+    
+    gyroSection.style.transform = `rotateZ(${rotationAmount}deg)`;
+  }
+
+  
+  async function initOrientation() {
+    try {
+      if (typeof DeviceOrientationEvent.requestPermission === "function") {
+        const response = await DeviceOrientationEvent.requestPermission();
+        if (response === "granted") {
           window.addEventListener("deviceorientation", handleOrientation);
+          console.log("✅ دسترسی به ژیروسکوپ فعال شد");
+        } else {
+          showPermissionButton();
         }
-      } catch (err) {
-        console.error("Orientation error:", err);
-        showPermissionButton();
+      } else {
+       
+        window.addEventListener("deviceorientation", handleOrientation);
+        console.log("✅ ژیروسکوپ فعال است");
       }
+    } catch (err) {
+      console.error("❌ خطا در دسترسی به ژیروسکوپ:", err);
+      showPermissionButton();
     }
+  }
 
-    function showPermissionButton() {
-      const btn = document.createElement("button");
-      btn.textContent = "فعال‌سازی چرخش گوشی";
-      btn.style.position = "fixed";
-      btn.style.bottom = "20px";
-      btn.style.left = "50%";
-      btn.style.transform = "translateX(-50%)";
-      btn.style.padding = "12px 20px";
-      btn.style.fontSize = "1rem";
-      btn.style.borderRadius = "10px";
-      btn.style.background = "#1e73be";
-      btn.style.color = "#fff";
-      btn.style.border = "none";
-      btn.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
-      btn.style.zIndex = "9999";
-      btn.onclick = async () => {
-        try {
-          const response = await DeviceOrientationEvent.requestPermission();
-          if (response === "granted") {
-            window.addEventListener("deviceorientation", handleOrientation);
-            btn.remove();
-          } else {
-            alert("بدون اجازه، چرخش فعال نمی‌شود.");
-          }
-        } catch {
-          alert("دسترسی به سنسور ممکن نیست.");
+  
+  function showPermissionButton() {
+    const btn = document.createElement("button");
+    btn.textContent = "فعال‌سازی چرخش گوشی";
+    btn.style.position = "fixed";
+    btn.style.bottom = "20px";
+    btn.style.left = "50%";
+    btn.style.transform = "translateX(-50%)";
+    btn.style.padding = "12px 20px";
+    btn.style.fontSize = "1rem";
+    btn.style.borderRadius = "10px";
+    btn.style.background = "#1e73be";
+    btn.style.color = "#fff";
+    btn.style.border = "none";
+    btn.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+    btn.style.zIndex = "9999";
+    btn.onclick = async () => {
+      try {
+        const response = await DeviceOrientationEvent.requestPermission();
+        if (response === "granted") {
+          window.addEventListener("deviceorientation", handleOrientation);
+          btn.remove();
+        } else {
+          alert("بدون اجازه، چرخش فعال نمی‌شود.");
         }
-      };
-      document.body.appendChild(btn);
-    }
+      } catch {
+        alert("دسترسی به سنسور ممکن نیست.");
+      }
+    };
+    document.body.appendChild(btn);
+  }
 
-    window.addEventListener("load", initOrientation);
-  </script>
-    ...
-  <!-- تمام کدهای HTML کارتت اینجاست -->
 
-  <!-- 🔐 رمز ورود -->
+  window.addEventListener("load", initOrientation);
+</script>
   <script>
-    const correctPassword = "hajir123"; // ← رمز دلخواهت
-    const entered = prompt("لطفاً رمز ورود را وارد کنید:");
-    if (entered !== correctPassword) {
-      document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
-    }
-  </script>
-  ...
-  <!-- تمام کدهای HTML کارتت اینجاست -->
-
-  <!-- 🔐 رمز ورود -->
-  <script>
-    const correctPassword = "hajir123"; // ← رمز دلخواهت
-    const entered = prompt("لطفاً رمز ورود را وارد کنید:");
-    if (entered !== correctPassword) {
-      document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
-    }
-  </script>
+  const correctPassword = "Lucy2020"; // ← رمز دلخواهت
+  const entered = prompt("لطفاً رمز ورود را وارد کنید:");
+  if (entered !== correctPassword) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
+  }
+</script>
+<script>
+  const correctPassword = "lucy2020"; // ← رمز دلخواهت
+  const entered = prompt("لطفاً رمز ورود را وارد کنید:");
+  if (entered !== correctPassword) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
+  }
+</script>
 </body>
-</html>  ...
-  <!-- تمام کدهای HTML کارتت اینجاست -->
 
-  <!-- 🔐 رمز ورود -->
-  <script>
-    const correctPassword = "hajir123"; // ← رمز دلخواهت
-    const entered = prompt("لطفاً رمز ورود را وارد کنید:");
-    if (entered !== correctPassword) {
-      document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px;'>⛔ دسترسی غیرمجاز</h2>";
-    }
-  </script>
-</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
